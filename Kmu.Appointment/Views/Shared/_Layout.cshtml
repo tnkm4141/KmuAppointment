@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Kmu_Appointment</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    @* Uncomment to use the HtmlEditor control *@
+    @* <script src="https://unpkg.com/devextreme-quill@21_2/dist/dx-quill.min.js"></script> *@
+
+    <link rel="stylesheet" href="~/css/vendor.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Site.css" />
+    <script src="~/js/vendor.js" asp-append-version="true"></script>
+    <style>
+        li a, .dropbtn {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+            
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+
+<body style="padding-top: 5rem;">
+
+    <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-md">
+        <a class="navbar-brand" href="/">Kmu_Appointment</a>
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Doktorlar</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Polyclinics" asp-action="Polyclinics">Poliklinikler</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Contact" asp-action="Index">İletişim</a></li>
+                
+                <li class="nav-item dropdown">
+                    <a href="javascript:void(0)" class="nav-link dropbtn">Randevu</a>
+                    <div class="dropdown-content">
+                        <a href="/Appointment/AddAppointment/">Randevu AL</a>
+                        <a href="/Appointment/CancelAppointment/">Randevu İptal</a>
+                        
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                @* <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Giriş Yap</a></li>*@
+                <li class="nav-item"><a class="glyphicon glyphicon-log-in" asp-area="" asp-controller="Login" asp-action="Index">Giriş Yap</a></li>
+            </ul>
+            
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+</body>
+
+</html>

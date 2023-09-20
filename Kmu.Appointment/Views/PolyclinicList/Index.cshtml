@@ -1,0 +1,33 @@
+﻿@using Kmu_Appointment.Models
+
+
+@{
+    ViewData["Title"] = "PolyclinicList";
+    Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+
+
+@(Html.DevExtreme().DataGrid<Kmu.Appointment.Models.Entity2.Polyclinic>()
+    .DataSource(ds => ds.Mvc()
+        .Controller("PolyclinicList")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("Id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.Id);
+
+        columns.AddFor(m => m.Name);
+
+        columns.AddFor(m => m.Description);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)

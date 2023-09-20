@@ -1,0 +1,120 @@
+﻿@model Kmu.Appointment.Models.Entity2.Xappointment
+
+
+@{
+    ViewData["Title"] = "AddAppointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .title {
+        position: absolute;
+        padding: 0 8px;
+        left: 20px;
+        top: 0;
+        transform: translateY(calc(-50% - 2px));
+        background-color: #fff;
+        color: #707070;
+        font-size: 24px;
+    }
+
+    .item {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        position: relative;
+        padding: 30px;
+        padding-top: 20px;
+        padding-bottom: 15px;
+        margin-bottom: 50px;
+    }
+
+    .fileds {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 15px 0;
+        flex-wrap: wrap;
+    }
+
+    .item-fileds {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+</style>
+
+<script src="~/js/devextreme/jquery.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#PolyclinicId").change(function () {
+            $.get("/Appointment/LoadDoc", { p: $("#PolyclinicId").val() }, function (data) {
+                $("#DoctorId").empty();
+                $.each(data, function (index, row) {
+                    $("#DoctorId").append("<option value='" + row.Id + "'>" + row.NameSurname + "</option>")
+                });
+            });
+        })
+    });
+</script>
+
+
+<br />
+<form class="form-group" method="post">
+    <div class="item">
+        <div class="title">Doktor Listesi</div>
+        <div class="fileds">
+            <div class="item-fileds">
+                @Html.DropDownListFor(x => x.PolyclinicId, (List<SelectListItem>)ViewBag.Polyclinic, "Poliklinik seçiniz", new { @class = "form-control", id = "PolyclinicId" })
+
+            </div>
+            <div class="item-fileds">
+                @Html.DropDownListFor(x => x.DoctorId, new SelectList(" "), "Doktor Seçiniz", new { @class = "form-control", id = "DoctorId" })
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="item">
+        <div class="title">Tarih Ve Saat </div>
+        <div class="fileds">
+            <div class="item-fileds">
+                <input asp-for="Date" class="form-control" name="Date" />
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="item">
+        <div class="title">Kişisel Bilgiler</div>
+        <div class="fileds">
+            <div class="item-fileds">
+                <input type="text" name="FullName" placeholder="Adınız Soyadınız">
+
+            </div>
+
+            <div class="item-fileds">
+                <input type="text" name="UserIdentifer" placeholder="TC Numaranız">
+            </div>
+            <div class="item-fileds">
+                <input type="text" name="Gsm" placeholder="Cep Telefonu">
+            </div>
+
+        </div>
+
+    </div>
+
+    <button class="btn btn-success" id="btnRandevuAl">Randevu Al</button>
+
+    <script>
+        $('#btnRandevuAl').click(function () {
+            alert('Randevunuz oluşturulmuştur.');
+        });
+    </script>
+</form>
+
+

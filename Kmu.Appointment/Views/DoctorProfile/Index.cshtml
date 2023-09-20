@@ -1,0 +1,32 @@
+﻿@using Kmu.Appointment.Models
+@{
+    ViewData["Title"] = "drProfile";
+    Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+@(Html.DevExtreme().Form<Kmu.Appointment.Models.Entity2.Doctor>()
+        
+    .Items(items => {
+
+        @*items.AddSimpleFor(m => m.Id);*@
+
+        items.AddSimpleFor(m => m.Title);
+
+        items.AddSimpleFor(m => m.NameSurname);
+
+        items.AddSimpleFor(m => m.Tc);
+
+        items.AddSimpleFor(m => m.Telephone);
+
+        items.AddSimpleFor(m => m.Mail);
+
+        items.AddSimpleFor(m => m.Polyclinic)
+            .Editor(e => e
+                .Lookup()
+                .DataSource(ds => ds.WebApi().Controller("DoctorProfile").LoadAction("PolyclinicsLookup").Key("Value"))
+                .ValueExpr("Value")
+                .DisplayExpr("Text")
+            );
+
+        items.AddSimpleFor(m => m.Password);
+    })
+)

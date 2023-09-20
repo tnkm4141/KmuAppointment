@@ -1,0 +1,40 @@
+﻿@using Kmu.Appointment.Models
+@{
+    ViewData["Title"] = "drPatient";
+    Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+
+@(Html.DevExtreme().DataGrid<Kmu.Appointment.Models.Entity2.Patient>()
+    .DataSource(ds => ds.Mvc()
+        .Controller("DoctorPatient")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("Id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+       @* columns.AddFor(m => m.Id);*@
+
+        columns.AddFor(m => m.NameSurname);
+
+        columns.AddFor(m => m.Tc);
+
+        columns.AddFor(m => m.Doctor).Lookup(lookup => lookup
+            .DataSource(ds => ds.WebApi().Controller("DoctorPatient").LoadAction("DoctorsLookup").Key("Value"))
+            .ValueExpr("Value")
+            .DisplayExpr("Text")
+        );
+
+        columns.AddFor(m => m.Mail);
+
+        columns.AddFor(m => m.Telephone);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)

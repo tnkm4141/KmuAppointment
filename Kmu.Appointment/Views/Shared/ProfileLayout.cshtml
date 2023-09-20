@@ -1,0 +1,188 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+
+    <link rel="stylesheet" href="~/AdminPage/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/AdminPage/assets/vendors/css/vendor.bundle.base.css">
+
+    <link rel="stylesheet" href="~/AdminPage/assets/css/style.css">
+
+    <link rel="shortcut icon" href="~/AdminPage/assets/images/favicon.ico" />
+    <link rel="stylesheet" href="~/css/vendor.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Site.css" />
+    <script src="~/js/vendor.js" asp-append-version="true"></script>
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href="../../index.html"><img src="~/AdminPage/assets/images/logo.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="~/AdminPage/assets/images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <div class="search-field d-none d-md-block">
+                    <form class="d-flex align-items-center h-100" action="#">
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-transparent">
+                                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                            </div>
+                            <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                        </div>
+                    </form>
+                </div>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-profile-img">
+                                <img src="~/AdminPage/assets/images/faces/face1.jpg" alt="image">
+                                <span class="availability-status online"></span>
+                            </div>
+                            <div class="nav-profile-text">
+                                <p class="mb-1 text-black">David Greymaax</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link">
+                            <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+                        </a>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item nav-profile">
+                        <a href="#" class="nav-link">
+                            <div class="nav-profile-image">
+                                <img src="~/AdminPage/assets/images/faces/face1.jpg" alt="profile">
+                                <span class="login-status online"></span>
+                                <!--change to offline or busy as needed-->
+                            </div>
+                            <div class="nav-profile-text d-flex flex-column">
+
+                                <span class="font-weight-bold mb-2">Admin</span>
+
+
+                                <span class="text-secondary text-small">Project Manager</span>
+                            </div>
+                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                        </a>
+                    </li>
+
+                    @if (User.IsInRole(((byte)Kmu.Appointment.Models.Enums.Role.Admin).ToString()))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="DoctorList" asp-action="Index">
+
+                                <span class="menu-title">Doktor Listesi</span>
+
+                                <i class="mdi mdi-contacts menu-icon"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="PolyclinicList" asp-action="Index">
+                                <span class="menu-title">Poliklinik Listesi</span>
+                                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Patients" asp-action="Index">
+                                <span class="menu-title">Hasta Listesi</span>
+                                <i class="mdi mdi-chart-bar menu-icon"></i>
+                            </a>
+                        </li>
+         
+                    }
+                    @if (User.IsInRole(((byte)Kmu.Appointment.Models.Enums.Role.Doctor).ToString()))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="DoctorPatient" asp-action="Index">
+                                <span class="menu-title">Hasta Listesi</span>
+                                <i class="mdi mdi-contacts menu-icon"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="DoctorCalendar" asp-action="Index">
+                                <span class="menu-title">Takvim Görüntüle</span>
+                                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="DoctorProfile" asp-action="Index">
+                                <span class="menu-title">Profil Düzenle</span>
+                                <i class="mdi mdi-chart-bar menu-icon"></i>
+                            </a>
+                        </li>
+
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                            <span class="menu-title">Siteye Git</span>
+                            <i class="mdi mdi-car menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Login" asp-action="LogOut">
+                            <span class="menu-title">Çıkış Yap</span>
+                            <i class="mdi mdi-logout-variant menu-icon"></i>
+                        </a>
+                    </li>
+
+</nav>
+
+
+            @* @await Html.PartialAsync("~/Views/Profile/AdminNavbarPartial.cshtml")*@
+
+            @* @await Html.PartialAsync("~/Views/Profile/DoctorsNavbarPartial.cshtml")*@
+
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+
+                <footer class="footer">
+                    <div class="container-fluid clearfix">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Tüm Hakları Saklıdır |@DateTime.Now.Year</span>
+                        @*<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">  <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Profil </a> </span>*@
+                    </div>
+                </footer>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="~/AdminPage/assets/vendors/js/vendor.bundle.base.js"></script>
+
+    <script src="~/AdminPage/assets/js/off-canvas.js"></script>
+    <script src="~/AdminPage/assets/js/hoverable-collapse.js"></script>
+    <script src="~/AdminPage/assets/js/misc.js"></script>
+
+
+</body>
+</html>
+

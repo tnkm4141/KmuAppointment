@@ -1,0 +1,66 @@
+﻿@model Kmu.Appointment.Models.Entity2.Xappointment
+@{
+    ViewData["Title"] = "CancelAppointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .title {
+        position: absolute;
+        padding: 0 8px;
+        left: 20px;
+        top: 0;
+        transform: translateY(calc(-50% - 2px));
+        background-color: #fff;
+        color: #707070;
+        font-size: 24px;
+    }
+
+    .item {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        position: relative;
+        padding: 30px;
+        padding-top: 20px;
+        padding-bottom: 15px;
+        margin-bottom: 50px;
+    }
+
+    .fileds {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 15px 0;
+        flex-wrap: wrap;
+    }
+
+    .item-fileds {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+</style>
+<h1>Randevu iptal</h1>
+<br />
+<form class="form-group" method="post">
+    <div class="item">
+        <div class="title">Randevu Bilgileri</div>
+        <div class="fileds">
+            <div class="item-fileds">
+                <input type="text" name="Id" placeholder="Randevu Numaranız">
+
+            </div>
+
+        </div>
+
+    </div>
+    <button class="btn btn-primary"id="btnRandevuIptal">Randevuyu İptal Et</button>
+    @*@Html.ActionLink("Randevu İptal Et", "CancelAppointment","Appointment",new { id = Model.Id },new {@class= "btn btn-primary",onclick="return confirm('Randevunuz İptal Edilirsin Mİ?')" })*@
+
+    <script>
+        $('#btnRandevuIptal').click(function () {
+            alert('Randevunuz iptal ediliyor.');
+        });
+    </script>
+</form>
+

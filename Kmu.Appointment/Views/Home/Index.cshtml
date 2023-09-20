@@ -1,0 +1,47 @@
+@using Kmu_Appointment.Models
+
+@model List<Kmu.Appointment.Models.Entity2.Doctor>
+<h2>Doctor CRUD </h2>
+<style>
+    .cards {
+        margin:0 auto;
+        max-width:1000px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: auto;
+        grid-gap: 20px;
+        font-family:sans-serif;
+    }
+
+    &amp;amp;nbsp;
+
+    .card {
+        border: 2px solid #e7e7e7;
+        border-radius: 4px;
+        padding: .5rem;
+    }
+    .card-img-top{
+        width:100%;
+        display:block;
+    }
+</style>
+
+    <body>
+
+        <div class="cards">
+            @foreach (var k in Model)
+            {
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src='https://cdn.create.vista.com/api/media/medium/152100704/stock-photo-doctor-analyzing-x-ray-picture?token=' alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@k.NameSurname</h5>
+                        <p class="card-text">@k.Mail</p>
+                    
+                        @* <a href="#" class="btn btn-primary">Go somewhere</a>*@
+                    </div>
+                </div>
+           
+            }
+        </div>
+    </body>

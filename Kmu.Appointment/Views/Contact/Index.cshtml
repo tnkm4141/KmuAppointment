@@ -1,0 +1,23 @@
+﻿@model Kmu.Appointment.Models.Entity2.Contact
+
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+}
+
+
+<form class="form-group" method="post">
+    <b>Ad Soyad</b>
+    @Html.TextBoxFor(x => x.NameSurname,new { @class="form-control"})
+    <b>Mail</b>
+    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
+    <b>Telefon</b>
+    @Html.TextBoxFor(x => x.Telephone, new { @class = "form-control" })
+    <b>Mesaj</b>
+    @Html.TextBoxFor(x => x.Message, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Gonder</button>
+
+</form>
